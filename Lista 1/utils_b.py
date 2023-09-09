@@ -1,3 +1,5 @@
+from operator import itemgetter
+
 def add_person(data, name, age, city, hobbies):
     # Verifica se name já existe em data
     for d in data: 
@@ -47,25 +49,25 @@ def get_ages(data):
     age_list = []
     for d in data:
         age_list.append(d["age"])
-    return print(min(age_list), sum(age_list)/len(data), max(age_list))
+    return  min(age_list), sum(age_list)/len(data), max(age_list)
 
 def get_hobbies(data):
     hobbies_set = set()
     for d in data:
         hobbies_set = hobbies_set.union(d["hobbies"])
-    return print(hobbies_set)
+    return hobbies_set
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+def get_people_by_hobbies(data, hobbie):
+    sorted_list = sorted(data, key=lambda k: k['age'])
+    list_hobbies = []
+    for d in sorted_list:
+        for i in d["hobbies"]:
+            print(i)
+            if i in hobbie:
+                tupla = {d["name"], i}
+                list_hobbies.append(tupla)
+                print(tupla)
+            else:
+                print("hm")
+            return list_hobbies
+    return list_hobbies
